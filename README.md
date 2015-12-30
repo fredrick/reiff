@@ -1,90 +1,103 @@
-# 2015 NCAA FBS Bowl Projections
+# NCAA FBS Projections
 
-## Models
+Quick, dirty, and very rough experiments with Python, projection models, machine learning, and NCAA FBS football. Models implemented with [Jupyter/IPython](http://jupyter.readthedocs.org/), [Pandas](http://pandas.pydata.org/), [NumPy](http://www.numpy.org/), and [scikit-learn](http://scikit-learn.org/).
+
+## Models, 2015 NCAA FBS Bowl Projections
 
 ### Head-to-head offense only
-What if only offense mattered? Monte Carlo projected point model using [Kernel density estimation](https://en.wikipedia.org/wiki/Kernel_density_estimation) and [Lasso](http://statweb.stanford.edu/~tibs/lasso/simple.html) regression.
+
+What if only offense mattered? This model explores this what if scenario using a Monte Carlo projected point model simulated with [Kernel density estimation](https://en.wikipedia.org/wiki/Kernel_density_estimation) and [Lasso](http://statweb.stanford.edu/~tibs/lasso/simple.html) regression. Output is projected winning team (offense), projected spread is median head-to-head point margin after simulating 10,000 games, followed by odds of each team winning.
+
+"Defense wins championships" and clearly there is room for improvement by modeling an opponent's offense against a team's defense. For bowl games especially, strength of schedule, and team based rankings (e.g. FPI, Elo) have been shown to be [fairly effective](http://fivethirtyeight.com/features/heres-how-our-college-football-playoff-predictions-work/).
 
 ```
-Arizona, 0.5868, 0.4132
--4.90452623032
-Utah, 0.5259, 0.4741
--1.70606649178
-Appalachian State, 0.7186, 0.2812
--13.7035790613
-San Jose State, 0.5408, 0.4592
--1.51796236627
-Louisiana Tech, 0.508, 0.4916
--0.789029339828
-Western Kentucky, 0.6764, 0.3236
--9.94597107953
-Utah State, 0.6169, 0.3831
--5.75118723872
-Toledo, 0.66, 0.34
--6.12282192712
-Boise State, 0.5476, 0.4524
--3.18218225772
-Bowling Green, 0.7515, 0.2485
--9.44660800136
-Western Michigan, 0.513, 0.4848
--0.995739592165
-Cincinnati, 0.5172, 0.4828
--0.874983260325
-Marshall, 0.6764, 0.321
--9.26648217977
-Washington State, 0.6097, 0.3903
--5.2025531787
-Southern Mississippi, 0.6792, 0.3199
--13.6763535873
-Indiana, 0.5603, 0.4397
--2.53016598497
-Tulsa, 0.6531, 0.3469
--6.58276974937
-UCLA, 0.5776, 0.4222
--4.730187858
-Navy, 0.8163, 0.1837
--11.6218292209
-Central Michigan, 0.5785, 0.4215
--3.37065445955
-California, 0.5815, 0.4185
--3.91229481724
-Baylor, 0.5985, 0.4015
--6.1005933931
-Colorado State, 0.7505, 0.2495
--8.21167079079
-Texas Tech, 0.7372, 0.2628
--12.6389140202
-Memphis, 0.69, 0.2964
--19.1142676663
-Mississippi State, 0.5228, 0.4772
--0.897546036387
-Texas A&M, 0.5069, 0.4931
--0.335365624174
-USC, 0.6547, 0.3453
--7.91811378961
-Houston, 0.6479, 0.3521
--8.32036737843
-Oklahoma, 0.669, 0.331
--8.09829105746
-Alabama, 0.609, 0.391
--2.87209137231
-Tennessee, 0.7247, 0.2753
--13.765967183
-Notre Dame, 0.5421, 0.4579
--1.80329700623
-Michigan, 0.5897, 0.4102
--5.27542122587
-Stanford, 0.6442, 0.3558
--6.04064353747
-Oklahoma State, 0.5379, 0.4621
--1.88443917759
-Penn State, 0.5065, 0.4934
--0.271691632705
-Arkansas, 0.5714, 0.4286
--3.7566942391
-TCU, 0.564, 0.436
--3.66260997905
-West Virginia, 0.5404, 0.4596
--2.23509375289
-Accuracy: 0.608695652174
+Arizona, 0.5889, New Mexico, 0.411
+-5.03234456701
+Utah, 0.518, BYU, 0.482
+-1.2208513588
+Appalachian State, 0.7168, Ohio, 0.2831
+-13.7828220229
+San Jose State, 0.5509, Georgia State, 0.4491
+-1.69516445077
+Louisiana Tech, 0.5116, Arkansas State, 0.4879
+-0.988603515798
+Western Kentucky, 0.6749, South Florida, 0.3251
+-9.21396138608
+Utah State, 0.6218, Akron, 0.3782
+-5.86002686933
+Toledo, 0.6649, Temple, 0.3351
+-6.2352883198
+Boise State, 0.5465, Northern Illinois, 0.4535
+-3.16863494508
+Bowling Green, 0.758, Georgia Southern, 0.242
+-9.34113406384
+Western Michigan, 0.5213, Middle Tennessee, 0.4758
+-1.7379816171
+Cincinnati, 0.509, San Diego State, 0.491
+-0.46692297147
+Marshall, 0.6704, Connecticut, 0.3266
+-9.18643132285
+Washington State, 0.601, Miami (Florida), 0.399
+-5.14984781656
+Southern Mississippi, 0.6775, Washington, 0.3213
+-13.2893061507
+Indiana, 0.5711, Duke, 0.4289
+-2.77713608392
+Tulsa, 0.6584, Virginia Tech, 0.3416
+-7.14903836646
+UCLA, 0.5689, Nebraska, 0.431
+-4.39322243934
+Navy, 0.816, Pittsburgh, 0.184
+-11.5190238722
+Central Michigan, 0.5891, Minnesota, 0.4109
+-3.54091859037
+California, 0.5778, Air Force, 0.4222
+-3.74238348462
+Baylor, 0.6028, North Carolina, 0.3972
+-6.28159327371
+Colorado State, 0.7433, Nevada, 0.2567
+-8.08881422402
+Texas Tech, 0.7344, LSU, 0.2656
+-12.1508899857
+Memphis, 0.698, Auburn, 0.289
+-19.8848112251
+Mississippi State, 0.5372, North Carolina State, 0.4628
+-1.69926863167
+Texas A&M, 0.5019, Louisville, 0.4981
+-0.0886080596184
+USC, 0.6603, Wisconsin, 0.3397
+-8.02487376272
+Houston, 0.6416, Florida State, 0.3583
+-7.92687457407
+Oklahoma, 0.6696, Clemson, 0.3304
+-8.09466903919
+Alabama, 0.6167, Michigan State, 0.3833
+-3.17098721413
+Tennessee, 0.729, Northwestern, 0.271
+-14.2957564732
+Notre Dame, 0.5478, Ohio State, 0.4522
+-1.83322611516
+Michigan, 0.5889, Florida, 0.4108
+-5.02723229034
+Stanford, 0.6462, Iowa, 0.3538
+-6.30258242038
+Oklahoma State, 0.5382, Mississippi, 0.4618
+-2.07802175627
+Penn State, 0.5, Georgia, 0.4999
+-0.00272858025543
+Arkansas, 0.5637, Kansas State, 0.4361
+-3.57872272507
+TCU, 0.5749, Oregon, 0.4251
+-4.17631179548
+West Virginia, 0.5527, Arizona State, 0.4473
+-2.75995666835
+Accuracy: 0.583333333333 (2015-12-30)
 ```
+
+## About
+
+College football is notoriously difficult to project due to the [small sample of data](http://www.cbcb.umd.edu/~salzberg/docs/murthy_thesis/survey/node16.html) to draw from. Jupyter notebook has a working name in honor of [2015 Jim Thorpe](http://www.blackheartgoldpants.com/2015/12/10/9890276/desmond-king-wins-jim-thorpe-award-for-best-defensive-back) and consensus All-American Desmond King. You can probably guess what team I root for.
+
+## Author
+
+This project has been a fun weekend learning experience by [Fredrick Galoso](https://twitter.com/wayoutmind), just don't bet with it yet! Data is from [/r/CFBAnalysis](https://www.reddit.com/r/CFBAnalysis/comments/3j1gjg/2015_data_sources/).
