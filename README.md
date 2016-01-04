@@ -4,6 +4,8 @@ Quick, dirty, and very rough experiments with Python, projection models, machine
 
 ## Models, 2015 NCAA FBS Bowl Projections
 
+REIFF: Regression Estimated Iterative Football Forecaster
+
 ### Head-to-head points
 
 What if only offense mattered? This model explores this what if scenario using a Monte Carlo projected point model simulated with [Kernel density estimation](https://en.wikipedia.org/wiki/Kernel_density_estimation) and [Lasso](http://statweb.stanford.edu/~tibs/lasso/simple.html) regression. Output is projected winning team, projected spread is median head-to-head point margin after simulating 10,000 games, followed by odds of each team winning.
@@ -186,7 +188,7 @@ Accuracy: 0.625
 
 ## About
 
-College football is notoriously difficult to project due to the [small sample of data](http://www.cbcb.umd.edu/~salzberg/docs/murthy_thesis/survey/node16.html) to draw from. While not incorporated into these models, for bowl games especially, strength of schedule, and team based rankings (e.g. FPI, Elo) have been shown to be [fairly effective](http://fivethirtyeight.com/features/heres-how-our-college-football-playoff-predictions-work/). Jupyter notebook has a working name in honor of [2015 Jim Thorpe](http://www.blackheartgoldpants.com/2015/12/10/9890276/desmond-king-wins-jim-thorpe-award-for-best-defensive-back) and consensus All-American Desmond King. You can probably guess what team I root for.
+College football is notoriously difficult to project due to the [small sample of data](http://www.cbcb.umd.edu/~salzberg/docs/murthy_thesis/survey/node16.html) to draw from. While not incorporated into these models, for bowl games especially, strength of schedule, and team based rankings (e.g. FPI, Elo) have been shown to be [fairly effective](http://fivethirtyeight.com/features/heres-how-our-college-football-playoff-predictions-work/). Jupyter notebook has a working name in honor of [2012 NFL first-round selection](https://en.wikipedia.org/wiki/Riley_Reiff) Riley Reiff. You can probably guess what team I root for.
 
 ## Author
 
