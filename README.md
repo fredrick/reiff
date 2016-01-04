@@ -9,86 +9,88 @@ Quick, dirty, and very rough experiments with Python, projection models, machine
 What if only offense mattered? This model explores this what if scenario using a Monte Carlo projected point model simulated with [Kernel density estimation](https://en.wikipedia.org/wiki/Kernel_density_estimation) and [Lasso](http://statweb.stanford.edu/~tibs/lasso/simple.html) regression. Output is projected winning team, projected spread is median head-to-head point margin after simulating 10,000 games, followed by odds of each team winning.
 
 ```
-Arizona, 0.5854, New Mexico, 0.4145
--4.96372630803
-Utah, 0.5085, BYU, 0.4915
--0.540930470751
-Appalachian State, 0.7204, Ohio, 0.2794
--13.9269237065
-San Jose State, 0.5471, Georgia State, 0.4529
--1.52651728645
-Louisiana Tech, 0.5041, Arkansas State, 0.4956
--0.236102610183
-Western Kentucky, 0.6861, South Florida, 0.3139
--10.1614554841
-Utah State, 0.6118, Akron, 0.3881
--5.32199234559
-Toledo, 0.6571, Temple, 0.3429
--6.08107947177
-Boise State, 0.5455, Northern Illinois, 0.4545
--2.78007975954
-Bowling Green, 0.7507, Georgia Southern, 0.2493
--9.29093635803
-Western Michigan, 0.5201, Middle Tennessee, 0.4778
--1.39638920461
-Cincinnati, 0.5247, San Diego State, 0.4753
--1.18917690475
-Marshall, 0.6796, Connecticut, 0.3174
--9.5114768113
-Washington State, 0.6055, Miami (Florida), 0.3945
--4.93852063194
-Southern Mississippi, 0.6785, Washington, 0.3203
--13.3397461731
-Indiana, 0.5616, Duke, 0.4384
--2.51747353523
-Tulsa, 0.6638, Virginia Tech, 0.3362
--7.07771753203
-UCLA, 0.5696, Nebraska, 0.4302
--4.900077284
-Navy, 0.8147, Pittsburgh, 0.1853
--11.7242485566
-Central Michigan, 0.5757, Minnesota, 0.4243
--3.01682646543
-California, 0.5775, Air Force, 0.4225
--3.7110515643
-Baylor, 0.6107, North Carolina, 0.3893
--6.38316915084
-Colorado State, 0.7481, Nevada, 0.2519
--8.29363663816
-Texas Tech, 0.7373, LSU, 0.2627
--12.2364404356
-Memphis, 0.6928, Auburn, 0.2943
--19.5171189189
-Mississippi State, 0.5353, North Carolina State, 0.4647
--1.51244579445
-Texas A&M, 0.5061, Louisville, 0.4939
--0.285580171838
-USC, 0.6593, Wisconsin, 0.3407
--8.10838145345
-Houston, 0.6448, Florida State, 0.3552
--8.02688380023
-Oklahoma, 0.6785, Clemson, 0.3215
--8.76708467752
-Alabama, 0.6115, Michigan State, 0.3885
--3.17545841716
-Tennessee, 0.7236, Northwestern, 0.2764
--13.43471006
-Notre Dame, 0.5437, Ohio State, 0.4563
--1.57078532789
-Michigan, 0.5951, Florida, 0.4048
--5.43259570255
-Stanford, 0.6521, Iowa, 0.3479
--6.46355199018
-Oklahoma State, 0.5312, Mississippi, 0.4688
--1.74843496377
-Penn State, 0.5056, Georgia, 0.4944
--0.21805949765
-Arkansas, 0.5707, Kansas State, 0.4293
--3.57934377589
-TCU, 0.5637, Oregon, 0.4363
--3.77387156975
-West Virginia, 0.5516, Arizona State, 0.4484
--2.60194009706
+Arizona, 0.5913, New Mexico, 0.4087
+-5.30054822593
+Utah, 0.5187, BYU, 0.4812
+-1.13385798144
+Appalachian State, 0.7255, Ohio, 0.2741
+-14.0479956441
+San Jose State, 0.5428, Georgia State, 0.4572
+-1.54302027563
+Louisiana Tech, 0.5072, Arkansas State, 0.4923
+-0.522121422808
+Western Kentucky, 0.668, South Florida, 0.332
+-9.04857840087
+Utah State, 0.6172, Akron, 0.3828
+-5.77542781283
+Toledo, 0.6518, Temple, 0.3482
+-5.71886754818
+Boise State, 0.5427, Northern Illinois, 0.4573
+-2.69197662378
+Bowling Green, 0.755, Georgia Southern, 0.245
+-9.19202025275
+Western Michigan, 0.518, Middle Tennessee, 0.4796
+-1.30622358426
+Cincinnati, 0.5266, San Diego State, 0.4734
+-1.36392374216
+Marshall, 0.6763, Connecticut, 0.3198
+-9.34312457996
+Washington State, 0.6044, Miami (Florida), 0.3956
+-5.10000412776
+Southern Mississippi, 0.6869, Washington, 0.3124
+-13.8555623706
+Indiana, 0.5631, Duke, 0.4369
+-2.48402670949
+Tulsa, 0.6706, Virginia Tech, 0.3294
+-7.47671230182
+UCLA, 0.5731, Nebraska, 0.4267
+-4.83605289941
+Navy, 0.8126, Pittsburgh, 0.1874
+-11.3892684869
+Central Michigan, 0.5904, Minnesota, 0.4096
+-3.37192418699
+California, 0.5778, Air Force, 0.4222
+-3.66218495633
+Baylor, 0.6026, North Carolina, 0.3974
+-6.26602111817
+Colorado State, 0.7395, Nevada, 0.2605
+-8.0288664086
+Texas Tech, 0.7293, LSU, 0.2707
+-12.0459942702
+Memphis, 0.701, Auburn, 0.2865
+-19.8909165865
+Mississippi State, 0.5364, North Carolina State, 0.4636
+-1.53967728883
+Texas A&M, 0.5069, Louisville, 0.4931
+-0.299962805945
+USC, 0.6572, Wisconsin, 0.3428
+-7.98026953207
+Houston, 0.6401, Florida State, 0.3599
+-7.66933276237
+Oklahoma, 0.6646, Clemson, 0.3354
+-8.30510328517
+Alabama, 0.6141, Michigan State, 0.3859
+-3.2208931763
+Tennessee, 0.7194, Northwestern, 0.2806
+-13.5427890622
+Notre Dame, 0.5495, Ohio State, 0.4505
+-1.92367746792
+Michigan, 0.5931, Florida, 0.4067
+-5.5016893063
+Stanford, 0.6471, Iowa, 0.3529
+-6.40422482181
+Oklahoma State, 0.5238, Mississippi, 0.4762
+-1.3513101365
+Penn State, 0.5055, Georgia, 0.4944
+-0.233205235047
+Arkansas, 0.5605, Kansas State, 0.4393
+-3.36840895142
+TCU, 0.5683, Oregon, 0.4317
+-3.84253359836
+West Virginia, 0.5465, Arizona State, 0.4535
+-2.41831072781
+Clemson, 0.5792, Alabama, 0.4208
+-3.09168208473
 Accuracy: 0.575
 ```
 
