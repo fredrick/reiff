@@ -1,10 +1,28 @@
 # NCAA FBS Projections
 
+**REIFF** - Regression Estimated Iterative Football Forecaster
+
 Quick, dirty, and very rough experiments with Python, projection models, machine learning, and NCAA FBS football. Models implemented with [Jupyter/IPython](http://jupyter.readthedocs.org/), [Pandas](http://pandas.pydata.org/), [NumPy](http://www.numpy.org/), and [scikit-learn](http://scikit-learn.org/).
 
-## Models, 2015 NCAA FBS Bowl Projections
+## Models
 
-REIFF: Regression Estimated Iterative Football Forecaster
+*2015 NCAA FBS Bowl Projections*
+
+### Overview
+
+Head-to-head points
+
+```
+Accuracy: 0.575
+Against Spread: 0.325
+```
+
+Point differential
+
+```
+Accuracy: 0.65
+Against Spread: 0.525
+```
 
 ### Head-to-head points
 
@@ -97,98 +115,98 @@ Accuracy: 0.575
 Against Spread: 0.325
 ```
 
-### Margin of victory
+### Point differential
 
-"Defense wins championships" and clearly there is room for improvement by accounting for a defense's contribution to winning. Projecting margin of victory instead of total point production yields a 5% improvement in win-loss accuracy (62.5% > 57.5%). This model is also a Monte Carlo model simulated with KDE and Lasso regression, but projects point margin instead of total points. Spreads are the median margin of victory. A tie breaking strategy is currently not implemented; ties contribute toward each team's win probability, which is why probabilities do not equal 1.
+"Defense wins championships" and clearly there is room for improvement by accounting for a defense's contribution to winning. Projecting margin of victory instead of total point production yields a 5% improvement in win-loss accuracy (65% > 57.5%). This model is also a Monte Carlo model simulated with KDE and Lasso regression, but projects point margin instead of total points. Spreads are the median margin of victory. A tie breaking strategy is currently not implemented; ties contribute toward each team's win probability, which is why probabilities do not equal 1.
 
 ```
-New Mexico, 0.6249, Arizona, 0.5774
--1.12939596858
-BYU, 0.5752, Utah, 0.4974
--13.898468969
-Appalachian State, 0.617, Ohio, 0.5064
--6.37407000225
-Georgia State, 0.6247, San Jose State, 0.6067
--2.41267855803
-Louisiana Tech, 0.5981, Arkansas State, 0.5307
--7.25764401109
-Western Kentucky, 0.6537, South Florida, 0.3834
--11.2106764122
-Akron, 0.6252, Utah State, 0.5949
--0.494307391817
-Toledo, 0.5949, Temple, 0.4566
--12.69450899
-Boise State, 0.5994, Northern Illinois, 0.4966
--12.6079239274
-Bowling Green, 0.6932, Georgia Southern, 0.3692
--9.12544045738
-Middle Tennessee, 0.6362, Western Michigan, 0.5559
--3.85205478046
-San Diego State, 0.652, Cincinnati, 0.4785
--6.47811693232
-Marshall, 0.692, Connecticut, 0.4904
+New Mexico, 0.6265, Arizona, 0.5816
+-0.588294640576
+BYU, 0.5769, Utah, 0.4897
+-14.1334519912
+Appalachian State, 0.6258, Ohio, 0.4976
+-5.83152046968
+Georgia State, 0.6231, San Jose State, 0.6115
+-2.14782406204
+Louisiana Tech, 0.6041, Arkansas State, 0.5345
+-5.97026067881
+Western Kentucky, 0.6507, South Florida, 0.3827
+-11.4605191773
+Akron, 0.6235, Utah State, 0.5926
+-1.41943810713
+Toledo, 0.5681, Temple, 0.4819
+-13.2062021237
+Boise State, 0.592, Northern Illinois, 0.5085
+-12.1691373063
+Bowling Green, 0.6899, Georgia Southern, 0.3695
+-8.90334493945
+Middle Tennessee, 0.6554, Western Michigan, 0.5393
+-2.68587276925
+San Diego State, 0.6546, Cincinnati, 0.4703
+-6.53048026101
+Marshall, 0.6919, Connecticut, 0.4757
 -0.0
-Miami (Florida), 0.5921, Washington State, 0.5852
--6.81217514739
-Southern Mississippi, 0.6678, Washington, 0.4798
--7.46527390096
-Duke, 0.7459, Indiana, 0.479
+Miami (Florida), 0.6042, Washington State, 0.5902
+-6.05261638372
+Southern Mississippi, 0.6656, Washington, 0.4861
+-6.96373272343
+Duke, 0.7409, Indiana, 0.4838
 -0.0
-Virginia Tech, 0.7919, Tulsa, 0.3911
+Virginia Tech, 0.7826, Tulsa, 0.3998
 -0.0
-UCLA, 0.6464, Nebraska, 0.4476
--6.11680000514
-Navy, 0.6812, Pittsburgh, 0.4069
--6.49188327492
-Central Michigan, 0.6388, Minnesota, 0.5303
+UCLA, 0.6426, Nebraska, 0.4505
+-6.07256201576
+Navy, 0.6846, Pittsburgh, 0.3998
+-6.71769550675
+Central Michigan, 0.6461, Minnesota, 0.5281
 -0.0
-Air Force, 0.5807, California, 0.5324
--8.12101350108
-Baylor, 0.5363, North Carolina, 0.4787
--18.9545911944
-Colorado State, 0.7022, Nevada, 0.449
--2.22285745825
-Texas Tech, 0.6238, LSU, 0.6118
--3.32039063027
-Memphis, 0.7917, Auburn, 0.3482
+Air Force, 0.5673, California, 0.5425
+-8.23825137676
+Baylor, 0.5417, North Carolina, 0.4712
+-18.6791963374
+Colorado State, 0.703, Nevada, 0.4535
+-1.77864063243
+LSU, 0.6176, Texas Tech, 0.614
 -0.0
-Mississippi State, 0.5887, North Carolina State, 0.5005
--9.66831251454
-Louisville, 0.6036, Texas A&M, 0.6027
--3.16278408001
-Wisconsin, 0.5871, USC, 0.5342
--9.36454707511
-Houston, 0.6156, Florida State, 0.439
--9.36732335955
-Oklahoma, 0.6138, Clemson, 0.4055
--21.3368341556
-Alabama, 0.5885, Michigan State, 0.4565
--11.617747958
-Tennessee, 0.5859, Northwestern, 0.4484
--12.664846909
-Ohio State, 0.7074, Notre Dame, 0.2939
--13.0767968047
-Michigan, 0.6857, Florida, 0.4198
--7.37924270895
-Stanford, 0.526, Iowa, 0.5183
--14.7386745576
-Mississippi, 0.6274, Oklahoma State, 0.4622
--7.92812176989
-Penn State, 0.5441, Georgia, 0.5275
--11.0574961436
-Arkansas, 0.7098, Kansas State, 0.5732
+Memphis, 0.8081, Auburn, 0.342
 -0.0
-TCU, 0.6646, Oregon, 0.4345
--7.39892858095
-West Virginia, 0.7203, Arizona State, 0.4166
--1.44389430127
-Clemson, 0.5685, Alabama, 0.4496
--18.6198044339
-Accuracy: 0.625
+Mississippi State, 0.5829, North Carolina State, 0.5029
+-9.77331210509
+Louisville, 0.598, Texas A&M, 0.5978
+-3.5793312059
+Wisconsin, 0.58, USC, 0.5347
+-10.1137618692
+Houston, 0.6118, Florida State, 0.4368
+-9.56463401231
+Oklahoma, 0.6032, Clemson, 0.4167
+-21.4061249965
+Alabama, 0.5869, Michigan State, 0.4603
+-12.2387002477
+Tennessee, 0.5875, Northwestern, 0.4518
+-12.1740785688
+Ohio State, 0.7102, Notre Dame, 0.2908
+-12.8648634989
+Michigan, 0.6853, Florida, 0.4162
+-7.48171649485
+Stanford, 0.5241, Iowa, 0.518
+-14.6536392766
+Mississippi, 0.6221, Oklahoma State, 0.4704
+-7.88578272791
+Penn State, 0.5383, Georgia, 0.534
+-11.4068981357
+Arkansas, 0.711, Kansas State, 0.5596
+-0.0
+TCU, 0.6589, Oregon, 0.4393
+-7.51333200008
+West Virginia, 0.7208, Arizona State, 0.4135
+-1.96104650557
+Clemson, 0.5591, Alabama, 0.4605
+-18.5566055762
+Accuracy: 0.65
 Against Spread: 0.525
 ```
 
-## About
+## Footnotes
 
 College football is notoriously difficult to project due to the [small sample of data](http://www.cbcb.umd.edu/~salzberg/docs/murthy_thesis/survey/node16.html) to draw from. While not incorporated into these models, for bowl games especially, strength of schedule, and team based rankings (e.g. FPI, Elo) have been shown to be [fairly effective](http://fivethirtyeight.com/features/heres-how-our-college-football-playoff-predictions-work/). Jupyter notebook has a working name in honor of [2012 NFL first-round selection](https://en.wikipedia.org/wiki/Riley_Reiff) Riley Reiff. You can probably guess what team I root for.
 
